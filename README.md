@@ -12,6 +12,7 @@ poetry install
 poetry shell
 ```
 
+Запуск приложения:
 ```bash
 python manage.py runserver
 ```
