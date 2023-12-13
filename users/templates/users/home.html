@@ -1,0 +1,10 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Welcome to the Home Page</h1>
+    <a href="{% url 'users:people' %}" class="btn btn-primary">Загрузить людей</a>
+    <a href="{% url 'users:planets' %}" class="btn btn-primary">Загрузить планеты</a>
+    <a href="{% url 'users:starships' %}" class="btn btn-primary">Загрузить корабли</a>
+</div>
+{% endblock %}

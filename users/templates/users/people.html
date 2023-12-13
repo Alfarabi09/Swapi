@@ -1,0 +1,52 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-lg" name="fetch_data">Загрузить данные</button>
+    </form>
+    {% if characters %}
+        <table class="table table-hover table-striped table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Height</th>
+                <th>Mass</th>
+                <th>Hair Color</th>
+                <th>Skin Color</th>
+                <th>Eye Color</th>
+                <th>Birth Year</th>
+                <th>Gender</th>
+                <th>Homeworld</th>
+                <th>Films</th>
+                <th>Species</th>
+                <th>Vehicles</th>
+                <th>Starships</th>
+                <th>Created</th>
+                <th>Edited</th>
+                <th>URL</th>
+            </tr>
+            {% for character in characters %}
+                <tr>
+                    <td>{{ character.name }}</td>
+                    <td>{{ character.height }}</td>
+                    <td>{{ character.mass }}</td>
+                    <td>{{ character.hair_color }}</td>
+                    <td>{{ character.skin_color }}</td>
+                    <td>{{ character.eye_color }}</td>
+                    <td>{{ character.birth_year }}</td>
+                    <td>{{ character.gender }}</td>
+                    <td><a href="{{ character.homeworld }}">Link</a></td>
+                    <td>{% for film in character.films %}<a href="{{ film }}">Film</a>{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                    <td>{% for species in character.species %}<a href="{{ species }}">Species</a>{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                    <td>{% for vehicle in character.vehicles %}<a href="{{ vehicle }}">Vehicle</a>{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                    <td>{% for starship in character.starships %}<a href="{{ starship }}">Starship</a>{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                    <td>{{ character.created }}</td>
+                    <td>{{ character.edited }}</td>
+                    <td><a href="{{ character.url }}">Link</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

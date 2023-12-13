@@ -1,0 +1,56 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-lg" name="fetch_data">Загрузить данные о планетах</button>
+    </form>
+    {% if planets %}
+        <table class="table table-hover table-striped table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Rotation Period</th>
+                <th>Orbital Period</th>
+                <th>Diameter</th>
+                <th>Climate</th>
+                <th>Gravity</th>
+                <th>Terrain</th>
+                <th>Surface Water</th>
+                <th>Population</th>
+                <th>Residents</th>
+                <th>Films</th>
+                <th>Created</th>
+                <th>Edited</th>
+                <th>URL</th>
+            </tr>
+            {% for planet in planets %}
+                <tr>
+                    <td>{{ planet.name }}</td>
+                    <td>{{ planet.rotation_period }}</td>
+                    <td>{{ planet.orbital_period }}</td>
+                    <td>{{ planet.diameter }}</td>
+                    <td>{{ planet.climate }}</td>
+                    <td>{{ planet.gravity }}</td>
+                    <td>{{ planet.terrain }}</td>
+                    <td>{{ planet.surface_water }}</td>
+                    <td>{{ planet.population }}</td>
+                    <td>
+                        {% for resident in planet.residents %}
+                            <a href="{{ resident }}">Resident</a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for film in planet.films %}
+                            <a href="{{ film }}">Film</a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ planet.created }}</td>
+                    <td>{{ planet.edited }}</td>
+                    <td><a href="{{ planet.url }}">Link</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+{% endblock %}
