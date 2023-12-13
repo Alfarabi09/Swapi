@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>SWAPI Characters</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/6cXz1wt3-5mDf1S/vC3VBrB5jfJTKx" crossorigin="anonymous">
 </head>
 <body>
     <form method="post">
         {% csrf_token %}
-        <button type="button" class="btn btn-primary">Primary Button</button>
+        <button type="submit" name="fetch_data">Загрузить данные</button>
     </form>
     {% if characters %}
-        <table class="table table-hover">
+        <table>
             <tr>
                 <th>Name</th>
                 <th>Height</th>
